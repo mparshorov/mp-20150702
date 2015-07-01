@@ -3,24 +3,34 @@ package bcc.mp_20150702;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 
 import org.apache.commons.lang3.StringUtils;
+
+import bcc.mp_20150702.apps.GenericApp;
+import bcc.mp_20150702.factory.AppFactory;
+import bcc.mp_20150702.factory.impl.AppFactoryImpl;
 
 public class App 
 {
 	public static void main(String[] args) throws IOException {
+		AppFactory factory = new AppFactoryImpl();
 		System.out.println("type 'quit' to exit\ntype 'help' if you want help");
-		String query = readLine("%s%s: ", new String[]{"code","quantity"});
+		String query = readLine("> ", null);
 		while(!StringUtils.equalsIgnoreCase("quit", query)){
 			if(StringUtils.equalsIgnoreCase(query, "help")){
-				System.out.println("type quit to exit");
+				factory.getAppForName("calculatepermit").getUsage();
 			}else{
-				System.out.printf("Welcome, %1$s.", query);
-				System.out.printf(fNEW_LINE);
-//				System.out.printf(service.sayHello());
-				System.out.printf(fNEW_LINE);
+				String[] querySplit = query.split("(\\t|\\s)");
+				GenericApp app = factory.getAppForName(querySplit[0]);
+				if(app != null){
+					String result = app.run(Arrays.copyOfRange(querySplit, 1, querySplit.length));
+					System.out.println(result);
+				}else{
+					System.out.println("The command '"+querySplit[0]+"' doesn't exist. Type 'help' to see all options.");
+				}
 			}
-			query = readLine("Query: ", null);
+			query = readLine("> ", null);
 		}
 		System.out.printf("Bye.");
 		System.out.printf(fNEW_LINE);
