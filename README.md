@@ -1,5 +1,4 @@
-# Bristol City Council
-## Coding test
+# Bristol City Council Coding test
 
 ## Building the project
 
