@@ -8,6 +8,10 @@ import bcc.mp_20150702.apps.GenericApp;
 
 public class CalculatePermit extends GenericApp{
 		
+	public CalculatePermit(String usage, String example) {
+		super(usage, example);
+	}
+
 	private Float standardPermitPrice = 100.0f;
 	
 	@Override
@@ -46,15 +50,6 @@ public class CalculatePermit extends GenericApp{
 		return sendError();
 	}
 	
-	@Override
-	public void getUsage(){
-		super.getUsage();
-		System.out.println();
-		System.out.println("CalculatePermit:");
-		System.out.println("Sample usage: CalculatePermit <postcode out code> <quantity>");
-		System.out.println("Example: CalculatePermit BS2 2");
-	}
-
 	@Override
 	public String sendError() {
 		return "There was an error with your request. Type 'help' to see usage.";

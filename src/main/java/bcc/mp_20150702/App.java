@@ -19,7 +19,7 @@ public class App
 		String query = readLine("> ", null);
 		while(!StringUtils.equalsIgnoreCase("quit", query)){
 			if(StringUtils.equalsIgnoreCase(query, "help")){
-				factory.getAppForName("calculatepermit").getUsage();
+				System.out.println(factory.getAppForName("calculatepermit").getUsage());
 			}else{
 				String[] querySplit = query.split("(\\t|\\s)");
 				GenericApp app = factory.getAppForName(querySplit[0]);
@@ -27,7 +27,9 @@ public class App
 					String result = app.run(Arrays.copyOfRange(querySplit, 1, querySplit.length));
 					System.out.println(result);
 				}else{
-					System.out.println("The command '"+querySplit[0]+"' doesn't exist. Type 'help' to see all options.");
+					if(StringUtils.isNotEmpty(querySplit[0])){
+						System.out.println("The command '"+querySplit[0]+"' doesn't exist. Type 'help' to see all options.");
+					}
 				}
 			}
 			query = readLine("> ", null);

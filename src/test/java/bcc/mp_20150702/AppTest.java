@@ -34,7 +34,7 @@ public class AppTest extends TestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		this.factory = new AppFactoryImpl();
-		this.calculatePermitApp = new CalculatePermit();
+		this.calculatePermitApp = new CalculatePermit("","");
 	}
 
 	public void testFactory() {
