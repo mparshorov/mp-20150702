@@ -5,7 +5,7 @@ import bcc.mp_20150702.apps.impl.CalculatePermit;
 public enum AppsList {
 	
 	CALCULATEPERMIT(
-			new CalculatePermit("CalculatePermit <postcode out code> <quantity>", "CalculatePermit BS2 2"));
+			new CalculatePermit("CalculatePermit <postcode out code 'BS' 1-19> <quantity max 3>", "CalculatePermit BS2 2"));
 	
 	private GenericApp app;
 	
